@@ -1,10 +1,11 @@
 ---
-description: 設計フェーズ。要件の技術的実現可能性を調査(docs/FEASIBILITY.md)→思想をインタビューで確定(docs/philosophy/)→技術選定(docs/TECH_STACK.md)→アーキテクチャを設計(docs/DESIGN.md)する
+description: 設計フェーズ。要件の技術的実現可能性を調査(docs/FEASIBILITY.md)→思想をインタビューで確定(docs/philosophy/)→技術選定(docs/TECH_STACK.md)→アーキテクチャを設計(docs/DESIGN.md)→必要ならDB設計(docs/DATABASE.md)する
 ---
 
-設計フェーズは「実現可能性調査」→「思想定義」→「技術選定」→「アーキテクチャ設計」の4段で進める。
-ステップ0は `feasibility-researcher`、ステップ2は `tech-selector`、ステップ1と3は `software-architect` が
-担当する（`Agent` ツールで各サブエージェントに委譲するか、役割を引き受けて進める）。
+設計フェーズは「実現可能性調査」→「思想定義」→「技術選定」→「アーキテクチャ設計」→「DB設計（必要な場合）」
+の5段で進める。ステップ0は `feasibility-researcher`、ステップ2は `tech-selector`、ステップ4は
+`database-designer`、ステップ1と3は `software-architect` が担当する（`Agent` ツールで各サブエージェントに
+委譲するか、役割を引き受けて進める）。
 
 ## ステップ0: 実現可能性調査（feasibility-study スキル / feasibility-researcher）
 
@@ -46,8 +47,21 @@ description: 設計フェーズ。要件の技術的実現可能性を調査(doc
 
 1. `docs/REQUIREMENTS.md`・`docs/philosophy/PLAN_PHILOSOPHY.md`・`docs/FEASIBILITY.md`（制約・リスク・
    推奨技術）・`docs/TECH_STACK.md`（採用技術）を読む
-2. アーキテクチャ概要・コンポーネント・データモデル・API/IF・処理フロー・トレードオフを設計する
+2. アーキテクチャ概要・コンポーネント・データモデル（概念）・API/IF・処理フロー・トレードオフを設計する
 3. 思想からの逸脱があれば理由を明記する
 4. `docs/DESIGN.md` に保存し、人間のレビューを受ける
+
+## ステップ4: DB設計（database-design スキル / database-designer）※必要な場合のみ
+
+`database-designer` に委譲し、要件達成に**永続データが必要かを判断**する。不要なら理由を残してスキップする。
+必要な場合は `docs/DATABASE.md` を作成する。
+
+1. `docs/REQUIREMENTS.md`・`docs/TECH_STACK.md`（採用DB）・`docs/philosophy/PLAN_PHILOSOPHY.md`・
+   `docs/DESIGN.md`（概念データモデル）・既存スキーマを読む
+2. エンティティ・属性・関連・カーディナリティを抽出する
+3. スキーマ（テーブル/コレクション・カラム・型・NULL可否・制約・PK/FK・インデックス）を設計する。
+   正規化/非正規化は思想の優先度に基づき理由を残す
+4. データ関連の受け入れ条件がスキーマで満たせることを確認する
+5. **ER図を Mermaid（`erDiagram`）で作成**し、`docs/DATABASE.md` にまとめて人間のレビューを受ける
 
 完了したら `/implement` で実装フェーズに進むよう案内する。
