@@ -8,13 +8,15 @@ Web開発の **「要件定義 → 設計 → 実装 → テスト → レビュ
 
 参考プロジェクトとの最大の違いは、**設計フェーズで「設計思想・実装思想・テスト思想」を
 インタビュー形式でユーザーから引き出し、`docs/philosophy/` に Markdown として永続化する** 点です。
-以降の実装・テストフェーズは、この思想ドキュメントを必ず参照して準拠します。
+あわせて **Git運用方針**（管理の有無・コミット粒度・メッセージ規約）もヒアリングして
+`docs/GIT_CONVENTIONS.md` にまとめます。以降の実装・テストフェーズは、これらを必ず参照して準拠します。
 
 ```
 docs/philosophy/
 ├── PLAN_PHILOSOPHY.md     … 設計思想（アーキ・構造をどう考えるか）
 ├── CODING_PHILOSOPHY.md   … 実装思想（コードをどう書くか）
 └── TEST_PHILOSOPHY.md     … テスト思想（品質をどう担保するか）
+docs/GIT_CONVENTIONS.md    … Git運用方針（管理の有無・コミット粒度・メッセージ規約）
 ```
 
 ## ワークフロー全体像
@@ -31,10 +33,11 @@ REQUIREMENTS    設計成果物群    コード ─準拠─▶ テスト       
 `/design` は次の5ステップを通して実行します（⓪〜④。各ステップは単体コマンドでも実行可）。
 
 ```
-⓪ 実現可能性調査 → ① 思想定義 → ② 技術選定 → ③ アーキ設計 → ④ DB設計（必要な場合）
-   FEASIBILITY.md   philosophy/*   TECH_STACK.md   DESIGN.md      DATABASE.md(ER図)
+⓪ 実現可能性調査 → ① 思想定義＋Git運用 → ② 技術選定 → ③ アーキ設計 → ④ DB設計（必要な場合）
+   FEASIBILITY.md   philosophy/*          TECH_STACK.md   DESIGN.md      DATABASE.md(ER図)
+                    GIT_CONVENTIONS.md
         │                                                              
-  困難なら要件へ差し戻し          思想(philosophy/*)が実装・テスト・監査を駆動する
+  困難なら要件へ差し戻し          思想(philosophy/*)とGit運用が実装・テスト・監査を駆動する
 ```
 
 | フェーズ | コマンド | 起動スキル | 担当ペルソナ | 主な成果物 |
@@ -43,6 +46,7 @@ REQUIREMENTS    設計成果物群    コード ─準拠─▶ テスト       
 | 設計⓪ 実現可能性 | `/feasibility` | feasibility-study | feasibility-researcher | `docs/FEASIBILITY.md` |
 | 設計② 技術選定 | `/tech-stack` | technology-selection | tech-selector | `docs/TECH_STACK.md` |
 | 設計④ DB設計（必要時） | `/db-design` | database-design | database-designer | `docs/DATABASE.md`（ER図含む） |
+| 設計① 思想＋Git運用 | （`/design` 内） | philosophy-definition | software-architect | `docs/philosophy/*.md`, `docs/GIT_CONVENTIONS.md` |
 | 設計（一括） | `/design` | feasibility-study → philosophy-definition → technology-selection → design-and-architecture →（必要なら）database-design | feasibility-researcher → software-architect → tech-selector → software-architect → database-designer | 上記設計成果物すべて |
 | 実装 | `/implement` | implementation | implementer | コード（CODING_PHILOSOPHY 準拠） |
 | テスト | `/test` | testing | test-engineer | テスト（TEST_PHILOSOPHY 準拠） |
@@ -62,8 +66,8 @@ REQUIREMENTS    設計成果物群    コード ─準拠─▶ テスト       
 /feasibility    # 要件の技術的実現可能性を裏取り調査し docs/FEASIBILITY.md を作成（/design の冒頭でも実行）
 /tech-stack     # 技術選定し選定理由・類似技術との比較を docs/TECH_STACK.md に作成（/design 内でも実行）
 /db-design      # 永続データが必要ならDB設計しER図(Mermaid)含め docs/DATABASE.md に作成（/design 内でも実行）
-/design         # ⓪実現可能性調査 → ①思想を確定 → ②技術選定 → ③アーキ設計 → ④DB設計（必要時）
-/implement      # DESIGN.md + DATABASE.md(あれば) + CODING_PHILOSOPHY.md に準拠して実装
+/design         # ⓪実現可能性調査 → ①思想+Git運用を確定 → ②技術選定 → ③アーキ設計 → ④DB設計（必要時）
+/implement      # DESIGN.md + DATABASE.md(あれば) + CODING_PHILOSOPHY.md + GIT_CONVENTIONS.md に準拠して実装
 /test           # TEST_PHILOSOPHY.md に準拠してテストを設計・実装
 /review         # 4ペルソナでレビュー・監査し docs/REVIEW.md を作成
 ```
@@ -132,9 +136,9 @@ REQUIREMENTS    設計成果物群    コード ─準拠─▶ テスト       
         └── philosophy-compliance-reviewer.md
 ```
 
-> `docs/REQUIREMENTS.md` / `docs/FEASIBILITY.md` / `docs/TECH_STACK.md` / `docs/philosophy/*.md` /
-> `docs/DESIGN.md` / `docs/DATABASE.md` / `docs/REVIEW.md` は、コマンド実行時に対象プロジェクト側に
-> 生成される成果物です
+> `docs/REQUIREMENTS.md` / `docs/FEASIBILITY.md` / `docs/philosophy/*.md` / `docs/GIT_CONVENTIONS.md` /
+> `docs/TECH_STACK.md` / `docs/DESIGN.md` / `docs/DATABASE.md` / `docs/REVIEW.md` は、コマンド実行時に
+> 対象プロジェクト側に生成される成果物です
 > （このリポジトリにはスキル・ペルソナ本体のみが含まれます）。
 
 ## 設計思想（このツール自体の方針）
