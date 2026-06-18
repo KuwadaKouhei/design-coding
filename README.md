@@ -20,29 +20,30 @@ docs/philosophy/
 ## ワークフロー全体像
 
 ```
-/requirements      /design                                   /implement      /test        /review
-  要件定義     →     設計                                →     実装      →   テスト   →  レビュー・監査
-     │         ┌──────┬─────────┬─────────┐                   │            │            │
-     │         │⓪実現可能性 ①思想   ②アーキ設計│                   │            │            │
-     │         │  調査    ヒアリング         │                   │            │            │
-     ▼         ▼      ▼         ▼         ▼                   ▼            ▼            ▼
-REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード ──準拠──▶ テスト       REVIEW.md
-   .md         .md       (3 docs)            CODING_PHILOSOPHY   TEST_PHILOSOPHY    （4ペルソナ監査）
-                  │          ▲                                                            │
-        困難なら要件へ差し戻し └──── 思想が後工程を駆動し、最後に思想準拠も監査される ──────┘
+/requirements   /design（⓪→①→②→③）                                      /implement   /test     /review
+  要件定義   →   設計                                                  →   実装    → テスト → レビュー・監査
+     │        ┌────────┬──────────┬──────────┬──────────┐                │         │         │
+     │        │⓪実現可能性 ①思想    ②技術選定   ③アーキ設計 │                │         │         │
+     │        │  調査    ヒアリング                       │                │         │         │
+     ▼        ▼        ▼          ▼          ▼          ▼                ▼         ▼         ▼
+REQUIREMENTS FEASIBILITY philosophy/* TECH_STACK   DESIGN.md ──準拠──▶ コード ─準拠─▶ テスト    REVIEW.md
+   .md         .md       (3 docs)     .md                CODING_PHILOSOPHY  TEST_PHILOSOPHY  （4ペルソナ監査）
+                 │           ▲                                                                   │
+       困難なら要件へ差し戻し  └──────── 思想が後工程を駆動し、最後に思想準拠も監査される ───────────┘
 ```
 
 | フェーズ | コマンド | 起動スキル | 担当ペルソナ | 主な成果物 |
 |---|---|---|---|---|
 | 要件定義 | `/requirements` | requirements-definition | requirements-analyst | `docs/REQUIREMENTS.md` |
 | 設計⓪ 実現可能性 | `/feasibility` | feasibility-study | feasibility-researcher | `docs/FEASIBILITY.md` |
-| 設計①②  思想・アーキ | `/design` | feasibility-study → philosophy-definition → design-and-architecture | feasibility-researcher → software-architect | `docs/FEASIBILITY.md`, `docs/philosophy/*.md`, `docs/DESIGN.md` |
+| 設計② 技術選定 | `/tech-stack` | technology-selection | tech-selector | `docs/TECH_STACK.md` |
+| 設計（一括） | `/design` | feasibility-study → philosophy-definition → technology-selection → design-and-architecture | feasibility-researcher → software-architect → tech-selector → software-architect | `docs/FEASIBILITY.md`, `docs/philosophy/*.md`, `docs/TECH_STACK.md`, `docs/DESIGN.md` |
 | 実装 | `/implement` | implementation | implementer | コード（CODING_PHILOSOPHY 準拠） |
 | テスト | `/test` | testing | test-engineer | テスト（TEST_PHILOSOPHY 準拠） |
 | レビュー・監査 | `/review` | review-and-audit | code-reviewer / security-auditor / web-performance-auditor / philosophy-compliance-reviewer | `docs/REVIEW.md` |
 
-> `/design` は実現可能性調査（⓪）から思想定義（①）・アーキ設計（②）まで通して実行します。
-> `/feasibility` は調査だけを単体で回したいときに使えます。
+> `/design` は ⓪実現可能性調査 → ①思想定義 → ②技術選定 → ③アーキ設計 を通して実行します。
+> `/feasibility`・`/tech-stack` は各ステップを単体で回したいときに使えます。
 
 ## 使い方
 
@@ -52,7 +53,8 @@ REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード 
 ```bash
 /requirements   # 要件をヒアリングし docs/REQUIREMENTS.md を作成
 /feasibility    # 要件の技術的実現可能性を裏取り調査し docs/FEASIBILITY.md を作成（/design の冒頭でも実行）
-/design         # ⓪実現可能性調査 → ①思想を確定 → ②docs/DESIGN.md 作成
+/tech-stack     # 技術選定し選定理由・類似技術との比較を docs/TECH_STACK.md に作成（/design 内でも実行）
+/design         # ⓪実現可能性調査 → ①思想を確定 → ②技術選定 → ③docs/DESIGN.md 作成
 /implement      # DESIGN.md + CODING_PHILOSOPHY.md に準拠して実装
 /test           # TEST_PHILOSOPHY.md に準拠してテストを設計・実装
 /review         # 4ペルソナでレビュー・監査し docs/REVIEW.md を作成
@@ -70,7 +72,8 @@ REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード 
 |---|---|---|
 | `requirements-analyst` | 要件アナリスト | 要件定義 |
 | `feasibility-researcher` | 技術調査担当（Web検索で裏取り） | 設計⓪ 実現可能性調査 |
-| `software-architect` | 思想ヒアリング＋アーキ設計 | 設計①② |
+| `tech-selector` | 技術選定担当 / テックリード（Web検索で裏取り） | 設計② 技術選定 |
+| `software-architect` | 思想ヒアリング＋アーキ設計 | 設計①③ |
 | `implementer` | ソフトウェアエンジニア | 実装 |
 | `test-engineer` | テストエンジニア | テスト |
 | `code-reviewer` | 5観点の総合コードレビュー | レビュー |
@@ -87,6 +90,7 @@ REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード 
     ├── commands/
     │   ├── requirements.md
     │   ├── feasibility.md
+    │   ├── tech-stack.md
     │   ├── design.md
     │   ├── implement.md
     │   ├── test.md
@@ -98,6 +102,7 @@ REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード 
     │   │   ├── SKILL.md
     │   │   ├── question-bank.md      # 3思想のインタビュー質問集
     │   │   └── templates.md          # 思想ドキュメントの出力テンプレート
+    │   ├── technology-selection/SKILL.md
     │   ├── design-and-architecture/SKILL.md
     │   ├── implementation/SKILL.md
     │   ├── testing/SKILL.md
@@ -105,6 +110,7 @@ REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード 
     └── agents/                       # 実行ペルソナ（サブエージェント）
         ├── requirements-analyst.md
         ├── feasibility-researcher.md
+        ├── tech-selector.md
         ├── software-architect.md
         ├── implementer.md
         ├── test-engineer.md
@@ -114,8 +120,8 @@ REQUIREMENTS FEASIBILITY philosophy/* DESIGN.md ──準拠──▶ コード 
         └── philosophy-compliance-reviewer.md
 ```
 
-> `docs/REQUIREMENTS.md` / `docs/FEASIBILITY.md` / `docs/philosophy/*.md` / `docs/DESIGN.md` /
-> `docs/REVIEW.md` は、コマンド実行時に対象プロジェクト側に生成される成果物です
+> `docs/REQUIREMENTS.md` / `docs/FEASIBILITY.md` / `docs/TECH_STACK.md` / `docs/philosophy/*.md` /
+> `docs/DESIGN.md` / `docs/REVIEW.md` は、コマンド実行時に対象プロジェクト側に生成される成果物です
 > （このリポジトリにはスキル・ペルソナ本体のみが含まれます）。
 
 ## 設計思想（このツール自体の方針）
