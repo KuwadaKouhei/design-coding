@@ -1,5 +1,5 @@
 ---
-description: 設計フェーズ。要件の技術的実現可能性を調査(docs/FEASIBILITY.md)→思想をインタビューで確定(docs/philosophy/)→技術選定(docs/TECH_STACK.md)→アーキテクチャを設計(docs/DESIGN.md)→必要ならDB設計(docs/DATABASE.md)する
+description: 設計フェーズ。要件の技術的実現可能性を調査(docs/FEASIBILITY.md)→思想とGit運用方針をインタビューで確定(docs/philosophy/・docs/GIT_CONVENTIONS.md)→技術選定(docs/TECH_STACK.md)→アーキテクチャを設計(docs/DESIGN.md)→必要ならDB設計(docs/DATABASE.md)する
 ---
 
 設計フェーズは「実現可能性調査」→「思想定義」→「技術選定」→「アーキテクチャ設計」→「DB設計（必要な場合）」
@@ -18,7 +18,7 @@ description: 設計フェーズ。要件の技術的実現可能性を調査(doc
 5. `docs/FEASIBILITY.md` に保存する。「困難」判定があれば `/requirements` への差し戻しを促し、
    実現性が確認できてからステップ1へ進む
 
-## ステップ1: 思想の確定（philosophy-definition スキル）
+## ステップ1: 思想の確定 ＋ Git運用方針（philosophy-definition スキル）
 
 `philosophy-definition` スキルを起動する。
 
@@ -30,6 +30,9 @@ description: 設計フェーズ。要件の技術的実現可能性を調査(doc
    - `docs/philosophy/PLAN_PHILOSOPHY.md`（設計思想）
    - `docs/philosophy/CODING_PHILOSOPHY.md`（実装思想）
    - `docs/philosophy/TEST_PHILOSOPHY.md`（テスト思想）
+5. 続けて **Git運用方針** をヒアリングする（`question-bank.md` のセクションD）。まず Git管理の有無を聞き、
+   使う場合のみコミット粒度・コミットメッセージ規約（と関連してブランチ運用）を深掘りする
+6. `docs/GIT_CONVENTIONS.md` を書き出す（シークレット・`.env` のコミット禁止を必ず明記。Git不使用なら理由を記録）
 
 ## ステップ2: 技術選定（technology-selection スキル / tech-selector）
 
