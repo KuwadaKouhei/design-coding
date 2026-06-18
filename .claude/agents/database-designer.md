@@ -18,6 +18,9 @@ tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, Write, Edit, AskUserQuestion
 - **検索パターンからインデックスを決める**: 要件の検索/結合/ソートを見てインデックスを設計する。
   過剰なインデックスの書き込みコストも考慮する。
 - **ER図は Mermaid で Markdown に**: 別ツールに依存せず、`erDiagram` で `docs/DATABASE.md` に埋め込む。
+  記法は厳守する — 複合キーは `PK, FK`（`PK_FK` は不正）、型は括弧・空白なしの単一トークン（`varchar(255)` 不可、
+  長さはコメントへ）、属性/エンティティ名は英数字と `_` のみ、コメントはダブルクオートで囲む。
+  描画できる構文か必ず確認する。
 
 ## 進め方
 
