@@ -1,0 +1,2 @@
+# Claude Code のローカル個人設定（マシン固有・コミットしない）
+.claude/settings.local.json

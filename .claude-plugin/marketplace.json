@@ -1,5 +1,6 @@
 {
   "name": "kuwada-plugins",
+  "description": "KuwadaKouhei の Claude Code プラグイン配布カタログ。",
   "owner": {
     "name": "KuwadaKouhei",
     "email": "k.kuwada.act@gmail.com"

@@ -7,8 +7,5 @@
     "email": "k.kuwada.act@gmail.com"
   },
   "repository": "https://github.com/KuwadaKouhei/design-coding",
-  "license": "MIT",
-  "commands": "./.claude/commands",
-  "agents": "./.claude/agents",
-  "skills": "./.claude/skills"
+  "license": "MIT"
 }
