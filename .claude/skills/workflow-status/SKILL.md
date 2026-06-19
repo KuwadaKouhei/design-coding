@@ -33,6 +33,7 @@ tools: Read, Grep, Glob, Bash
 | 4 | 実装 | `/4-implement` | ソースコード/コミットの存在（緩い判定） |
 | 5 | テスト | `/5-test` | テストファイルの存在（緩い判定） |
 | 6 | レビュー・監査 | `/6-review` | `docs/REVIEW.md` |
+| 7 | README整備 | `/7-readme` | ルートの `README.md`（技術スタック等8要素を網羅） |
 
 ## Process
 
@@ -65,6 +66,7 @@ tools: Read, Grep, Glob, Bash
 ⬜ STEP4 実装            （要手動確認）
 ⬜ STEP5 テスト          （要手動確認）
 ⬜ STEP6 レビュー・監査   docs/REVIEW.md
+⬜ STEP7 README整備      README.md
 
 ▶ 次にやること: 技術選定 →  /2b-tech-stack
    （設計を通しで進めるなら /2-design、自動で次へ進むなら /next）

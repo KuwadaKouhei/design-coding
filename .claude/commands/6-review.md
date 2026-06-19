@@ -2,7 +2,7 @@
 description: STEP6 レビュー・監査｜テスト後にコード/セキュリティ/性能/思想準拠を専門ペルソナで点検し、重大度別の指摘を docs/REVIEW.md にまとめる。テスト(STEP5)の後に実行
 ---
 
-> **STEP6 / 全6フェーズ（最終）**　前提: 実装・テスト（STEP4・5）　｜　現在地確認: `/status`
+> **STEP6 / 全7フェーズ**　前提: 実装・テスト（STEP4・5）　｜　現在地確認: `/status`
 
 `review-and-audit` スキルを起動する。
 
@@ -21,5 +21,5 @@ description: STEP6 レビュー・監査｜テスト後にコード/セキュリ
 
 ---
 - 完了の目印: `docs/REVIEW.md`（判定: マージ可 / 要修正）
-- ▶ 次: これで一巡完了。差し戻しがあれば `/4-implement`・`/5-test` へ
+- ▶ 次: `/7-readme`（README整備・最終）。差し戻しがあれば `/4-implement`・`/5-test` へ
 - 現在地確認: `/status` ／ 次へ自動で進む: `/next`
