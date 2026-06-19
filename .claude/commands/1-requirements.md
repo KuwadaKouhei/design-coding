@@ -1,6 +1,8 @@
 ---
-description: 要件定義フェーズ。機能/非機能要件・ユーザーストーリー・受け入れ条件・スコープを明確化し docs/REQUIREMENTS.md に保存する
+description: STEP1 要件定義｜機能/非機能要件・ユーザーストーリー・受け入れ条件・スコープを明確化し docs/REQUIREMENTS.md に保存する。最初に実行
 ---
+
+> **STEP1 / 全6フェーズ**　前提: なし（ここから開始）　｜　現在地確認: `/status`
 
 担当ペルソナは `requirements-analyst`（要件アナリスト）。`Agent` ツールでこのサブエージェントに
 委譲するか、その役割を引き受けたうえで `requirements-definition` スキルを起動する。
@@ -13,4 +15,7 @@ description: 要件定義フェーズ。機能/非機能要件・ユーザース
 4. スコープ（やること / やらないこと）と前提・制約・未決事項を明確化する
 5. `docs/REQUIREMENTS.md` に保存し、人間のレビューを受ける
 
-完了したら `/design` で設計フェーズに進むよう案内する。
+---
+- 完了の目印: `docs/REQUIREMENTS.md`
+- ▶ 次: `/2-design`（設計フェーズ）
+- 現在地確認: `/status` ／ 次へ自動で進む: `/next`

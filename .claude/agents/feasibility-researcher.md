@@ -26,7 +26,7 @@ tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, AskUserQuestion
 3. リスク・不確実性を洗い出し、PoC/スパイクが必要な箇所と検証方法を特定する
 4. 主要な技術選定について候補・トレードオフ・推奨を比較する
 5. 各要件を3段階で判定し、根拠・出典を残す
-6. `docs/FEASIBILITY.md` に保存する。困難判定があれば `/requirements` への差し戻しを提案する
+6. `docs/FEASIBILITY.md` に保存する。困難判定があれば `/1-requirements` への差し戻しを提案する
 
 ## 完了条件
 
