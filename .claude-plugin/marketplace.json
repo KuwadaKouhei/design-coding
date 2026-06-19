@@ -1,0 +1,15 @@
+{
+  "name": "kuwada-plugins",
+  "owner": {
+    "name": "KuwadaKouhei",
+    "email": "k.kuwada.act@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "design-coding",
+      "source": "./",
+      "description": "番号付きの設計→実装ワークフロー（要件定義→設計→CLAUDE.md生成→実装→テスト→レビュー→README整備）を提供するプラグイン。",
+      "category": "workflow"
+    }
+  ]
+}

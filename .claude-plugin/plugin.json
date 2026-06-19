@@ -1,0 +1,14 @@
+{
+  "name": "design-coding",
+  "version": "1.0.0",
+  "description": "番号付きの設計→実装ワークフロー（要件定義→設計→CLAUDE.md生成→実装→テスト→レビュー→README整備）を、スラッシュコマンド・スキル・専門ペルソナとして提供するプラグイン。設計フェーズで思想・ディレクトリ構造・タスク分解まで文書化する。",
+  "author": {
+    "name": "KuwadaKouhei",
+    "email": "k.kuwada.act@gmail.com"
+  },
+  "repository": "https://github.com/KuwadaKouhei/design-coding",
+  "license": "MIT",
+  "commands": "./.claude/commands",
+  "agents": "./.claude/agents",
+  "skills": "./.claude/skills"
+}
