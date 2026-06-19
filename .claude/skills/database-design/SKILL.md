@@ -195,5 +195,6 @@ varchar(255) name                    # ✗ 型に括弧 → varchar にし長さ
 
 ## 次のステップ
 
-DB設計が確定したら（または不要と判断したら）実装フェーズへ。`/implement`（`implementation` スキル）は
-`docs/DATABASE.md` をデータ層の実装・マイグレーションの基準として参照する。
+DB設計が確定したら（または不要と判断したら）`/3-claude-md` で CLAUDE.md を生成し、`/4-implement`
+（`implementation` スキル）で実装へ進む。実装は `docs/DATABASE.md` をデータ層の実装・マイグレーションの
+基準として参照する。

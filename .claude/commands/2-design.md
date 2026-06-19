@@ -1,6 +1,11 @@
 ---
-description: 設計フェーズ。要件の技術的実現可能性を調査(docs/FEASIBILITY.md)→思想とGit運用方針をインタビューで確定(docs/philosophy/・docs/GIT_CONVENTIONS.md)→技術選定(docs/TECH_STACK.md)→アーキテクチャを設計(docs/DESIGN.md)→必要ならDB設計(docs/DATABASE.md)する
+description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思想とGit運用(philosophy/・GIT_CONVENTIONS)→技術選定(TECH_STACK)→アーキ設計(DESIGN)→必要ならDB設計(DATABASE)。要件定義(STEP1)の後に実行
 ---
+
+> **STEP2 / 全6フェーズ**　前提: `docs/REQUIREMENTS.md`（STEP1完了）　｜　現在地確認: `/status`
+>
+> このコマンドは設計を**通しで**実行する。各ステップは単体コマンドでも実行可能:
+> ⓪`/2a-feasibility`　②`/2b-tech-stack`　④`/2c-db-design`（①思想・③アーキはこの一括コマンド内で実施）。
 
 設計フェーズは「実現可能性調査」→「思想定義」→「技術選定」→「アーキテクチャ設計」→「DB設計（必要な場合）」
 の5段で進める。ステップ0は `feasibility-researcher`、ステップ2は `tech-selector`、ステップ4は
@@ -15,7 +20,7 @@ description: 設計フェーズ。要件の技術的実現可能性を調査(doc
 2. 各要件の実現可能性を社内コードと外部情報（WebSearch/WebFetch）で裏取り調査する
 3. リスク・不確実性・PoC要否を洗い出し、技術選定の比較・推奨を整理する
 4. 各要件を 実現可能 / 条件付き可能 / 困難・要再検討 で判定し、根拠（出典つき）を残す
-5. `docs/FEASIBILITY.md` に保存する。「困難」判定があれば `/requirements` への差し戻しを促し、
+5. `docs/FEASIBILITY.md` に保存する。「困難」判定があれば `/1-requirements` への差し戻しを促し、
    実現性が確認できてからステップ1へ進む
 
 ## ステップ1: 思想の確定 ＋ Git運用方針（philosophy-definition スキル）
@@ -69,9 +74,12 @@ description: 設計フェーズ。要件の技術的実現可能性を調査(doc
 
 ## 設計完了後（実装に入る前）: CLAUDE.md 生成
 
-設計フェーズが完了したら、**実装に入る前に** `/claude-md`（`claude-md-generation` スキル /
+設計フェーズが完了したら、**実装に入る前に** `/3-claude-md`（`claude-md-generation` スキル /
 `claude-md-author`）を実行し、プロジェクトルートに `CLAUDE.md` を生成する。CLAUDE.md には各設計
 ドキュメントの説明と、「実装はドキュメントに沿う」「修正時はコードとドキュメントを一緒に更新する」運用ルールを
 記述する。これにより実装フェーズが常にドキュメント駆動になる。
 
-その後 `/implement` で実装フェーズに進むよう案内する。
+---
+- 完了の目印: `docs/FEASIBILITY.md`・`docs/philosophy/*`・`docs/GIT_CONVENTIONS.md`・`docs/TECH_STACK.md`・`docs/DESIGN.md`（＋必要なら`docs/DATABASE.md`）
+- ▶ 次: `/3-claude-md`（CLAUDE.md生成）→ その後 `/4-implement`
+- 現在地確認: `/status` ／ 次へ自動で進む: `/next`

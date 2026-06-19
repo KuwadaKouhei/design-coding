@@ -15,7 +15,7 @@ tools: Read, Grep, Glob, Write, Edit
 
 ## When to Use
 
-- 設計フェーズ（`/design`）が完了し、実装（`/implement`）に入る前
+- 設計フェーズ（`/2-design`）が完了し、実装（`/4-implement`）に入る前
 - 設計ドキュメントが追加・更新され、CLAUDE.md の記述が古くなったとき
 
 **前提**: 設計成果物（少なくとも `docs/REQUIREMENTS.md` と `docs/DESIGN.md`）が存在すること。
@@ -98,6 +98,17 @@ tools: Read, Grep, Glob, Write, Edit
 
 - `docs/TEST_PHILOSOPHY.md` の比率・方針に従う。受け入れ条件（`REQUIREMENTS.md`）に対応するテストを用意する。
 
+## ワークフローと進め方
+
+フェーズは番号付きコマンドで進める（番号＝実行順）:
+
+`/1-requirements` → `/2-design` → `/3-claude-md` → `/4-implement` → `/5-test` → `/6-review`
+
+- `/2-design` は内部で ⓪実現可能性→①思想+Git→②技術選定→③アーキ→④DB（必要時）を実行。
+  個別に回すなら `/2a-feasibility`・`/2b-tech-stack`・`/2c-db-design`。
+- **今どこまで終わって次に何をするかは `/status`** で確認できる（docs/ の成果物から自動判定）。
+- **順番を覚えていなくても `/next`** が次のフェーズを判定して進めてくれる。
+
 ## 言語・その他
 
 - ユーザーへの応答・説明は日本語で行う。
@@ -139,5 +150,5 @@ tools: Read, Grep, Glob, Write, Edit
 
 ## 次のフェーズ
 
-CLAUDE.md を生成したら実装フェーズへ。`/implement`（`implementation` スキル）は CLAUDE.md を入口に
+CLAUDE.md を生成したら実装フェーズへ。`/4-implement`（`implementation` スキル）は CLAUDE.md を入口に
 各ドキュメントを参照し、ドキュメントに沿って実装・修正する。
