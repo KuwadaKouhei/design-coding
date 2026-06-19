@@ -29,8 +29,10 @@ tools: Read, Grep, Glob, Bash
 | 2-② | 技術選定 | `/2b-tech-stack` | `docs/TECH_STACK.md` |
 | 2-③ | アーキ設計 | （`/2-design` 内） | `docs/DESIGN.md` |
 | 2-④ | DB設計（任意） | `/2c-db-design` | `docs/DATABASE.md`（永続データがある場合のみ必須） |
+| 2-⑤ | ディレクトリ構造設計 | `/2d-directory-structure` | `docs/DIRECTORY_STRUCTURE.md` |
+| 2-⑥ | タスク分解 | `/2e-tasks` | `docs/TASKS.md` |
 | 3 | CLAUDE.md生成 | `/3-claude-md` | ルートの `CLAUDE.md` |
-| 4 | 実装 | `/4-implement` | ソースコード/コミットの存在（緩い判定） |
+| 4 | 実装 | `/4-implement` | `docs/TASKS.md` の全タスクがマージ済み（タスク状態で判定） |
 | 5 | テスト | `/5-test` | テストファイルの存在（緩い判定） |
 | 6 | レビュー・監査 | `/6-review` | `docs/REVIEW.md` |
 | 7 | README整備 | `/7-readme` | ルートの `README.md`（技術スタック等8要素を網羅） |
@@ -40,7 +42,9 @@ tools: Read, Grep, Glob, Bash
 ### 1. 成果物の有無を調べる
 
 - `Glob`/`Bash(ls)` で上表のファイルの実在を確認する（`docs/` と ルート `CLAUDE.md`）。
-- 実装/テストは緩く判定する（例: `src/`・テストディレクトリ・テストファイルの有無、`git log` のコミット）。
+- **実装は `docs/TASKS.md` のタスク状態で判定する**（マージ済み数 / 全タスク数）。`docs/TASKS.md` があれば
+  状態列（✅マージ済み）を数え、「タスク n/m 完了・次は T0x」を示す。無ければ緩く判定し「要手動確認」と書く。
+- テストは緩く判定する（例: テストディレクトリ・テストファイルの有無）。
   確実に判定できない場合は **「要手動確認」** と明示し、「完了」と誇張しない。
 
 ### 2. 現在地を組み立てる
@@ -62,8 +66,10 @@ tools: Read, Grep, Glob, Bash
    ⬜ ②技術選定          docs/TECH_STACK.md      ← 次はここ
    ⬜ ③アーキ設計        docs/DESIGN.md
    －  ④DB設計           （永続データが必要な場合のみ）
+   ⬜ ⑤ディレクトリ構造  docs/DIRECTORY_STRUCTURE.md
+   ⬜ ⑥タスク分解        docs/TASKS.md
 ⬜ STEP3 CLAUDE.md生成   CLAUDE.md
-⬜ STEP4 実装            （要手動確認）
+⬜ STEP4 実装            docs/TASKS.md（例: 2/5 タスクがマージ済み・次は T03）
 ⬜ STEP5 テスト          （要手動確認）
 ⬜ STEP6 レビュー・監査   docs/REVIEW.md
 ⬜ STEP7 README整備      README.md
@@ -77,6 +83,8 @@ tools: Read, Grep, Glob, Bash
 - 「次にやること」を1〜2行で説明し、対応するコマンド/スキルを起動する
   （例: 技術選定が次なら `technology-selection` スキル / `tech-selector` に進む）。
 - 任意の DB設計が次候補のときは「永続データが必要か」を確認してから進む。
+- **実装フェーズの場合**は `docs/TASKS.md` の次の未完了タスクを示し、`/4-implement`（`main` から
+  そのタスクのブランチを切って実装）へ誘導する。マージ待ちのPRがあればその旨を伝える。
 - 全フェーズ完了済みなら「完了。次のイテレーションへ」と案内する。
 
 ## Red Flags
