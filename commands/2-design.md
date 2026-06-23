@@ -13,6 +13,15 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 `tech-selector`、ステップ4は `database-designer`、ステップ5は `structure-designer`、ステップ6は `task-planner`、
 ステップ1と3は `software-architect` が担当する（`Agent` ツールで各サブエージェントに委譲するか、役割を引き受けて進める）。
 
+## コミット運用（このフェーズ共通）
+
+**1フェーズ＝1コミット。** 各ステップ完了時、そのフェーズで新規作成・更新した `docs/` のドキュメントを
+**まとめて1つのコミット**にする（Gitを使う場合）。フェーズをまたいで変更を1コミットに混ぜない。
+例: ステップ1は `docs/philosophy/*.md`（3ファイル）と `docs/GIT_CONVENTIONS.md` を**計4ファイルで1コミット**にまとめる。
+コミットメッセージは `docs/GIT_CONVENTIONS.md` の規約に従う。まだ確定していない段階（⓪実現可能性など）は
+Conventional Commits の `docs:` を既定とする（例: `docs: 実現可能性調査(FEASIBILITY)を追加`）。
+コミット先ブランチ・`main` 直コミットの可否は `GIT_CONVENTIONS.md` の決定に従う。Git未使用ならコミットしない。
+
 ## ステップ0: 実現可能性調査（feasibility-study スキル / feasibility-researcher）
 
 `docs/FEASIBILITY.md` があるか確認する。なければ `feasibility-study` スキルを起動して作成する。
@@ -23,6 +32,7 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 4. 各要件を 実現可能 / 条件付き可能 / 困難・要再検討 で判定し、根拠（出典つき）を残す
 5. `docs/FEASIBILITY.md` に保存する。「困難」判定があれば `/1-requirements` への差し戻しを促し、
    実現性が確認できてからステップ1へ進む
+6. （Gitを使う場合）このフェーズの成果（`docs/FEASIBILITY.md`）をまとめて1コミットする（例 `docs: 実現可能性調査(FEASIBILITY)を追加`）
 
 ## ステップ1: 思想の確定 ＋ Git運用方針（philosophy-definition スキル）
 
@@ -39,6 +49,8 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 5. 続けて **Git運用方針** をヒアリングする（`question-bank.md` のセクションD）。まず Git管理の有無を聞き、
    使う場合のみコミット粒度・コミットメッセージ規約（と関連してブランチ運用）を深掘りする
 6. `docs/GIT_CONVENTIONS.md` を書き出す（シークレット・`.env` のコミット禁止を必ず明記。Git不使用なら理由を記録）
+7. （Gitを使う場合）このフェーズの成果（`docs/philosophy/*.md` の3ファイル ＋ `docs/GIT_CONVENTIONS.md`）を
+   **まとめて1コミット**にする（例 `docs: 設計/実装/テスト思想とGit運用方針を追加`）
 
 ## ステップ2: 技術選定（technology-selection スキル / tech-selector）
 
@@ -49,6 +61,7 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 3. 各領域で候補（類似技術スタック）を評価軸で比較する。最新状況は WebSearch/WebFetch で裏取りする
 4. 採用技術を決定し、「選定技術」「選定理由」「類似技術と比べてなぜ選んだか（不採用理由含む）」を残す
 5. `docs/TECH_STACK.md` に保存し、人間のレビューを受ける
+6. （Gitを使う場合）このフェーズの成果（`docs/TECH_STACK.md`）をまとめて1コミットする（例 `docs: 技術選定(TECH_STACK)を追加`）
 
 ## ステップ3: アーキテクチャ設計（design-and-architecture スキル）
 
@@ -59,6 +72,7 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 2. アーキテクチャ概要・コンポーネント・データモデル（概念）・API/IF・処理フロー・トレードオフを設計する
 3. 思想からの逸脱があれば理由を明記する
 4. `docs/DESIGN.md` に保存し、人間のレビューを受ける
+5. （Gitを使う場合）このフェーズの成果（`docs/DESIGN.md`）をまとめて1コミットする（例 `docs: アーキテクチャ設計(DESIGN)を追加`）
 
 ## ステップ4: DB設計（database-design スキル / database-designer）※必要な場合のみ
 
@@ -72,6 +86,7 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
    正規化/非正規化は思想の優先度に基づき理由を残す
 4. データ関連の受け入れ条件がスキーマで満たせることを確認する
 5. **ER図を Mermaid（`erDiagram`）で作成**し、`docs/DATABASE.md` にまとめて人間のレビューを受ける
+6. （Gitを使う場合）このフェーズの成果（`docs/DATABASE.md`。不要判断時はその記録）をまとめて1コミットする（例 `docs: DB設計(DATABASE)を追加`）
 
 ## ステップ5: ディレクトリ構造設計（directory-structure スキル / structure-designer）
 
@@ -85,6 +100,7 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 4. **拡張性のルール**（新要素の追加先が一意に決まる配置・依存方向・`shared`/`common` の肥大化抑制）を定義する
 5. ディレクトリツリーと各ディレクトリの責務表を書き、「新しい〇〇を足す」例で配置に迷いが出ないか自己検証する
 6. 思想・FW規約からの逸脱があれば理由を明記し、`docs/DIRECTORY_STRUCTURE.md` にまとめて人間のレビューを受ける
+7. （Gitを使う場合）このフェーズの成果（`docs/DIRECTORY_STRUCTURE.md`）をまとめて1コミットする（例 `docs: ディレクトリ構造(DIRECTORY_STRUCTURE)を追加`）
 
 ## ステップ6: タスク分解（task-breakdown スキル / task-planner）
 
@@ -96,6 +112,7 @@ description: STEP2 設計（一括）｜実現可能性調査(FEASIBILITY)→思
 3. 各タスクに 概要・対応する受け入れ条件・依存タスク・推奨ブランチ名（`feature/<ID>-<slug>`）・状態を付ける
 4. 依存を満たす実装順に並べる（各タスクのマージ時点で `main` がグリーンに保てる順）
 5. `docs/TASKS.md` にまとめ、人間のレビューを受ける。この一覧が実装フェーズの駆動表になる
+6. （Gitを使う場合）このフェーズの成果（`docs/TASKS.md`）をまとめて1コミットする（例 `docs: タスク分解(TASKS)を追加`）
 
 ## 設計完了後（実装に入る前）: CLAUDE.md 生成
 
