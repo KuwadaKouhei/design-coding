@@ -16,6 +16,9 @@ description: STEP2-⓪ 実現可能性調査（設計の単体ステップ）｜
 4. 主要な技術選定の候補・トレードオフ・推奨を比較する
 5. 各要件を 実現可能 / 条件付き可能 / 困難・要再検討 で判定し、根拠（出典つき）を添える
 6. `docs/FEASIBILITY.md` に保存し、人間のレビューを受ける
+7. （Gitを使う場合）**1フェーズ＝1コミット**。このフェーズで作成・更新した `docs/FEASIBILITY.md` を
+   まとめて1コミットする（メッセージは `docs/GIT_CONVENTIONS.md` 準拠。未確定なら `docs:` 既定。
+   例 `docs: 実現可能性調査(FEASIBILITY)を追加`）
 
 ---
 - 完了の目印: `docs/FEASIBILITY.md`
